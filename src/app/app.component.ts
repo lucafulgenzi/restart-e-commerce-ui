@@ -3,25 +3,50 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <h1>Il valore del contatore è {{ contatore }}</h1>
 
-    <button (click)="modificaInput()">Modifica Input</button>
+<!--    <div *ngIf="condizione">Il contenuto si visualizza se la condizione è true</div>-->
 
-    <app-sotto-componente [inputContatore]="contatore"
-                          (contatoreCambiato)="contatoreCambiatoEventHandler($event)" >
-    </app-sotto-componente>
+<!--    <div *ngIf="autenticato">Sei autenticato</div>-->
+<!--    <div *ngIf="!autenticato">Non sei autenticato</div>-->
+
+<!--    <button (click)="cambiaStato()">Cambia Stato</button>-->
+
+<!--    <div *ngIf="autenticato; else elseBlock">Benvenuto Luca</div>-->
+<!--    <ng-template #elseBlock>-->
+<!--      <div>Per favore accedi</div>-->
+<!--    </ng-template>-->
+
+<!--    <ul>-->
+<!--      <li *ngFor="let nome of nomi; index as i; first as f; odd as o">-->
+<!--        {{i + 1}}. {{ nome }} <span *ngIf="o">è pari</span>-->
+<!--      </li>-->
+<!--    </ul>-->
+
+    <div [ngSwitch]="statoOrdine">
+      <div *ngSwitchCase="'attesa'">Il tuo ordine è in attesa</div>
+      <div *ngSwitchCase="'spedito'">Il tuo ordine è in stato spedito</div>
+      <div *ngSwitchCase="'inConsegna'">Il tuo ordine è in consegna</div>
+      <div *ngSwitchCase="'consegnato'">Il tuo ordine è consegnato</div>
+      <div *ngSwitchDefault>Lo stato del tuo ordine è sconosciuto</div>
+    </div>
+
+
+
   `,
   styles: [``]
 })
 export class AppComponent {
 
-  contatore: number = 0;
+  // nomi: string[] = ['Luca', 'Fabio', 'Giuseppe', 'Marco', 'Filippo']
 
-  contatoreCambiatoEventHandler(nuovoContatore: number) {
-    this.contatore = nuovoContatore;
-  }
+  // condizione: boolean = false;
+  // autenticato: boolean = false;
 
-  modificaInput() {
-    this.contatore += 1;
-  }
+  statoOrdine: string = 'ciao'
+
+  constructor() {}
+
+  // cambiaStato() {
+  //   this.autenticato = !this.autenticato;
+  // }
 }
